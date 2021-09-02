@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isValid(String s) {
+       
+        Stack<Character> str= new Stack();
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='(' || s.charAt(i)=='[' || s.charAt(i)=='{')
+                str.push(s.charAt(i));
+            else{
+                if(str.isEmpty() == true)
+                    return false;
+                else if(reverse(str.peek(),s.charAt(i)) ==false)
+                    return false;
+                else 
+                    str.pop();
+            }
+        }
+        return (str.isEmpty() ==true);
+    }
+    boolean reverse(char a, char b)
+    {
+        return ((a=='(' && b==')') || (a=='[' && b==']') || (a=='{' && b=='}'));
+    }
+}

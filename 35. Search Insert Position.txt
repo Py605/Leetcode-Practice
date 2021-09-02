@@ -1,0 +1,19 @@
+class Solution {
+    public int searchInsert(int[] A, int k) {
+        int n=A.length;
+        int i=0;
+        while(i<n)
+        {
+            if(k==A[i])
+                return i;
+            else if(k>A[i])
+                i++;
+            else
+                if(k==0)
+                    return 0;
+            else
+                return i;
+        }
+        return n;
+    }
+}
