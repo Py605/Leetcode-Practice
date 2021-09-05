@@ -1,0 +1,54 @@
+class Solution {
+    public int search(int[] nums, int target) 
+    {
+        int peak=findPeakElement(nums);
+        if(peak==-1)
+            return (findInSequence(nums,0,nums.length-1,target));
+        int res=findInSequence(nums,0,peak,target);
+        if(res==-1){
+            res=findInSequence(nums,peak+1,nums.length-1,target);
+            return res;
+        }
+        else
+            return res;
+    }
+      public int findInSequence(int num[],int l,int h,int target){
+          int mid = 0;
+            while (l <= h) {
+                mid = (l + h) / 2;
+       // mid = (l + h) / 2;
+        if (num[mid] == target)
+           return mid;
+        else if (num[mid] < target)
+            l = mid + 1;
+         else
+             h=mid-1;       
+    }
+    
+    return -1;
+    }
+       public int findPeakElement(int[] num) 
+       {
+         // if (num.length <= 1)
+         //     return -1;
+    int mid = 0, l = 0, h = num.length - 1;
+    
+    while (l <= h) {
+        mid = (l + h) / 2;
+        if ( mid!=num.length-1 && num[mid] > num[mid + 1])
+            return mid;
+        else if (mid!=0 && num[mid] < num[mid - 1])
+            return (mid-1);
+        else{
+            if(num[l]>=num[mid])
+                h=mid-1;
+            else if(num[l]<num[mid])
+                l=mid+1;
+        }
+           
+    }
+    
+    return -1;
+    }
+  
+}
