@@ -1,0 +1,19 @@
+class Solution {
+    public int missingNumber(int[] a) {
+        int ans=0,n=a.length;
+    Arrays.sort(a);
+        boolean res=false;
+//checking which element is not present linearly....
+        for(int i=0;i<n;i++){
+            if(a[i]!=i){
+                res =true;
+                 ans=i;
+                break;
+            }              
+        }
+        if(res) 
+        return ans;
+    else
+        return n;
+    }
+}
