@@ -1,0 +1,23 @@
+class Solution {
+    public boolean searchMatrix(int[][] A, int target) {
+    int n=A.length;
+    int m=A[0].length;
+        for(int i=0;i<n;i++){
+            if(A[i][m-1]<target)
+                continue;
+            int start=0,end=m-1;
+            while(start<=end){
+                int mid=(start+end)/2;
+                if(A[i][mid]==target)
+                    return true;
+                else if(A[i][mid]>target)
+                    end=mid-1;
+                else
+                    start=mid+1;
+            }
+            if(A[i][m-1]>target)
+                return false;
+        }
+        return  false;
+    }
+}
