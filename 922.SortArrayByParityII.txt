@@ -1,0 +1,31 @@
+class Solution {
+    public int[] sortArrayByParityII(int[] A) {
+        int j=0,k=1;
+        int n=A.length;
+        
+        int da[]=new int [n];
+        for(int i : A)
+            {
+            if (i%2==0)
+                {
+                da[j]=i;
+                j=j+2;
+                }
+            }
+        for(int i : A)
+
+            {
+
+            if (i%2!=0)
+
+                {
+
+                da[k]=i;
+
+                k=k+2;
+              }
+                }
+        return da;
+        
+    }
+}
