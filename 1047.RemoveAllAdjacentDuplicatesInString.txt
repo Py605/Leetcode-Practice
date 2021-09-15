@@ -1,0 +1,33 @@
+class Solution {
+    public String removeDuplicates(String S) {
+        
+        
+
+
+Stack<Character> stack= new Stack();    
+//   List<Character> ll = new List<Character>();
+
+for(int i=0; i<S.length(); i++)
+   {
+    if(stack.empty())
+        stack.push(S.charAt(i));
+    else
+        {
+        if(stack.peek()==S.charAt(i))
+            stack.pop();
+        else
+            stack.push(S.charAt(i));
+        }
+    }
+      StringBuilder builder =new StringBuilder();    while(!stack.empty()){
+      
+      
+          builder.append(stack.pop());
+          }
+   return (builder.reverse().toString());
+
+        
+          
+    }
+
+    }

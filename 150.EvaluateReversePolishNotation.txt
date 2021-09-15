@@ -1,0 +1,37 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        Stack<Integer> stack = new Stack<>();
+
+        for (String token : tokens) {
+            if (isArithmeticSymbol(token)){
+                int num1 = stack.pop();
+                int num2 = stack.pop();
+
+                switch (token){
+                    case "+": stack.push(num2 + num1); break;
+                    case "-": stack.push(num2 - num1); break;
+                    case "*": stack.push(num2 * num1); break;
+                    case "/": stack.push(num2 / num1); break;
+                }
+
+            } else {
+                stack.push(Integer.parseInt(token));
+            }
+        }
+
+        return stack.isEmpty() ? 0 : stack.pop();
+    }
+    
+     private boolean isArithmeticSymbol(String s){
+
+        switch (s) {
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+                return true;
+            default:
+                return false;
+        }
+    }
+}
