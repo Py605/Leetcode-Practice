@@ -1,0 +1,18 @@
+class Solution {
+    public int maxNumberOfBalloons(String text) {
+        int len=text.length();
+        int balloon[]=new int[123];
+        for(int i=0;i<len;i++){
+                balloon[text.charAt(i)] +=1;     
+        }
+        //for b
+         int b=balloon[98];
+	        int a=balloon[97];
+	        int l=balloon[108];
+	        int o=balloon[111];
+	        int n=balloon[110];
+         int ans=0;
+        ans=Math.min(b,Math.min(a,Math.min(n,Math.min(l/2,o/2))));
+        return ans;
+    }
+}
