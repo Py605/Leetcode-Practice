@@ -1,0 +1,20 @@
+class Solution {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        int n=candies.length;
+        int max=0;
+        for(int i: candies){
+            if(i>max)
+                max=i;
+        }
+        //now checking every index by adding extra-candies to current candies....
+        List<Boolean> a=new ArrayList();
+        for(int i: candies){
+            int curr=i+extraCandies;
+            if(curr>=max)
+                a.add(true);
+            else
+                a.add(false);
+        }
+        return a;
+    }
+}

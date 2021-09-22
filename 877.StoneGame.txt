@@ -1,0 +1,34 @@
+class Solution {
+   public boolean stoneGame(int[] piles) {
+	Deque<Integer> a=new LinkedList();
+	for(int i=0;i<piles.length;i++)
+	a.add(piles[i]);
+	int alex=0,lee=0,i=0;
+	while(!a.isEmpty()) {
+		if(i%2==0) {
+			alex+=Math.max(a.getFirst(),a.getLast());
+		if(a.getFirst()>a.getLast())
+			a.removeFirst();
+		else if(a.getFirst()<a.getLast())
+			a.removeLast();
+		else
+			a.removeLast();
+		}
+		else {
+			if(i%2==0) {
+				lee+=Math.max(a.getFirst(),a.getLast());
+			if(a.getFirst()>a.getLast())
+				a.removeFirst();
+			else if(a.getFirst()<a.getLast())
+				a.removeLast();
+			else
+				a.removeLast();
+		}
+	}
+	
+	 
+}
+  return (alex>lee); 
+   }
+
+}

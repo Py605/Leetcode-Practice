@@ -1,0 +1,25 @@
+class Solution {
+    public List<String> buildArray(int[] target, int n) {
+    
+  ArrayList<String> myll=new ArrayList();
+        int val=1;
+        int i=0;
+        while(i< target.length)
+            {
+    
+       myll.add("Push");
+            if(target[i]== val)
+                {
+                val++;
+                i++;
+                }
+            else
+                {
+                val++;
+        myll.add("Pop");
+      
+                }
+            }
+          return myll;
+    }
+}
