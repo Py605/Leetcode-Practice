@@ -1,0 +1,31 @@
+class Solution {
+    public int[] nextLargerNodes(ListNode head) {
+        int count=0;
+        ListNode curr1=head;
+        while(curr1!=null){
+            curr1=curr1.next;
+        count++;
+        }
+        int da[]=new int[count];
+        int j=0;
+  for(ListNode curr=head;curr.next!=null;curr=curr.next)
+      {
+      for(ListNode temp=curr.next;temp!=null;temp=temp.next){
+          if(curr.val<temp.val)
+          {
+              da[j]=temp.val;
+              j++;
+              break;
+              }
+          if(temp.next==null)
+              {
+              da[j]= 0;
+              j++;
+              }
+          }
+      }
+        return da;
+
+        
+    }
+}
