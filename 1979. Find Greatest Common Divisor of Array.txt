@@ -1,0 +1,20 @@
+class Solution {
+    public int findGCD(int[] nums) {
+        Arrays.sort(nums);
+        return (findGCD(nums[0],nums[nums.length-1]));
+    }
+    public int findGCD(int x, int y)  
+    {  
+        int r=0, a, b;  
+            a = (x > y) ? x : y; // a is greater number  
+            b = (x < y) ? x : y; // b is smaller number  
+            r = b;  
+            while(a % b != 0)  
+            {  
+                r = a % b;  
+                a = b;  
+                b = r;  
+            }  
+        return r;  
+    }  
+}

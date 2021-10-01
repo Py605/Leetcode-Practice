@@ -1,0 +1,50 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        List<List<Integer>> ansList = new LinkedList<List<Integer>>();
+        
+        if(root == null) //checking if the initially tree is not empty...
+            return ansList;
+        
+        queue.add(root);//adding the first element in our queue...
+        while(!queue.isEmpty())
+        {
+            //taking the size of queue after traversing previous level..
+            int levelNum = queue.size();
+            //creating empty list for every level
+            List<Integer> subList = new LinkedList<Integer>();
+            //traversing the current level...
+            for(int i=0; i<levelNum; i++) 
+            {
+                TreeNode curr=queue.poll();
+                //taking current's element's Left and storing in queue...
+                if(curr.left != null) 
+                    queue.add(curr.left);
+               //taking current's element's Right and storing in queue...
+                if(curr.right != null) 
+                    queue.add(curr.right);
+                //atlast removing that element...
+                subList.add(curr.val);
+            }
+            //now,adding our small list in answer List
+            ansList.add(subList);
+        }
+        return ansList;
+    }
+}
