@@ -1,0 +1,34 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if(numRows == 1) return s;
+        int n = s.length();       
+		String ans="";
+		boolean even = true;
+		int gap = (numRows-1)*2,weird = 0;
+		for(int i=0;i<numRows;i++) {
+			int j=i;
+			while(j<n) {
+				ans+=s.charAt(j);
+				if(gap==0 || weird==0) {
+					if(weird == 0 )
+						j+=gap;
+					if( gap== 0 )
+						j+=weird;
+				}
+				else {
+					if(even)
+					{
+						j+=gap;						
+					}
+					else {
+						j+=weird;
+					}
+					even=!even;
+				}
+			}
+			even =true;
+			gap-=2;weird+=2;
+		}
+        return ans;
+    }
+}

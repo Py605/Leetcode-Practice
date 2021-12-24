@@ -1,0 +1,14 @@
+class Solution {
+    public String intToRoman(int num) {
+        String units[] = {"","I","II","III","IV","V","VI","VII","VIII","IX"};
+        String tens[] = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+        String hundreds[] = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+        String thousands[] = {"","M","MM","MMM"};
+        
+       String s1=thousands[num/1000];
+       String s2=hundreds[(num%1000)/100];
+       String s3=tens[(num%100)/10];
+       String s4=units[num%10];
+        return s1+s2+s3+s4;
+    }
+}
