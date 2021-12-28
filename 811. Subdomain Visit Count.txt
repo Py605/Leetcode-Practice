@@ -1,0 +1,56 @@
+class Solution {
+    public List<String> subdomainVisits(String[] domains) {
+        
+        HashMap<String, Integer> map =new HashMap();
+        
+        for(String domain : domains)
+        {
+            // domain = "9001 discuss.LC.com"
+            String temp[] =domain.split(" ");
+            
+            //Now, temp[0]="9001" , temp[1]= "discuss.LC.com"
+            int count = Integer.parseInt(temp[0]);
+            String words[] = temp[1].split("\\.");
+            // words[]={"discuss","LC","com"};
+            
+            //now we have to check for every words[i] that if this subDomain is already present or not?...
+            StringBuilder sb =new StringBuilder();
+            for(int i =words.length-1;i>=0;i--)
+            {
+                if(i == words.length-1)
+                {
+                    //if it is last subDomain then, sb="com";
+                    sb.append(words[i]);
+                }   
+                else
+                {
+                    //else we will make it like:- sb="LC.com"
+                    sb.insert(0,".");
+                    sb.insert(0,words[i]);
+                }
+                String subDomain = sb.toString();
+                //Now, making our Map (adding every subDomain in Map)..
+                if(map.containsKey(subDomain))
+                {
+                    int curr = map.get(subDomain);
+            map.put(subDomain,curr+count);
+                }
+                else
+                    map.put(subDomain,count);                
+            }
+        }
+        //Making our res ArrayList from Map....
+        //Till this point our HashMap is having elements like:- {com, 9001} 
+        //And we will convert them like:- "9001 com"
+        
+        List<String> res = new ArrayList();
+        for(String subDomain : map.keySet()){
+            StringBuilder sb = new StringBuilder();
+            sb.append(map.get(subDomain));
+            sb.append(" ");
+            sb.append(subDomain);
+            res.add(sb.toString());
+        }
+        return res;
+    }
+}
