@@ -1,0 +1,28 @@
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {
+        int n = time.length;
+        int answer =0;
+        // Calculating all the Remainders...
+        for(int i=0;i<n;i++)
+        {
+            time[i] = time[i]%60; 
+        }
+        //afterwards every element will lie in range (0-60)..
+        //will count all the frequencies...
+        int freq[] =new int [60];
+        
+        for(int i=0;i<n;i++){
+            freq[time[i]]+=1;            
+        }
+        int x = freq[0];
+        answer +=(x*(x-1))/2;
+        x = freq[30];
+        answer +=(x*(x-1))/2; 
+        for(int i=1;i<=29;i++){
+             x=freq[i];
+                answer += x * freq[60-i];
+
+        }
+        return answer;
+    }
+}
