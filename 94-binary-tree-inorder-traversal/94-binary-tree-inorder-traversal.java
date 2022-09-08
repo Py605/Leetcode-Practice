@@ -14,19 +14,25 @@
  * }
  */
 class Solution {
-  List<Integer> ans;
+  // Iterative sol..
     public List<Integer> inorderTraversal(TreeNode root) {
-      ans = new ArrayList();
+      List<Integer> ans = new ArrayList();
+      Stack<TreeNode> st = new Stack();
       
-      inorder(root);
+      TreeNode curr = root;
+      while(curr != null || !st.empty()) // until curr & stack both becomes null/empty..
+      {
+        //going to the extreme left as much as possible..
+        while(curr != null){
+          st.push(curr);
+          curr = curr.left;
+        }
+        //than, add it into answer list and now traverse in right subtree..
+        curr = st.pop();
+        ans.add(curr.val);
+        curr = curr.right;
+      }
       return ans;
     }
-  public void inorder(TreeNode root){
-    if(root == null)
-      return;
-        
-      inorder(root.left);
-    ans.add(root.val);
-      inorder(root.right);
-  }
+  
 }
