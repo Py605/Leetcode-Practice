@@ -1,32 +1,27 @@
 class Solution {
     public boolean canReorderDoubled(int[] arr) {
-      List<Integer> al = new ArrayList();
+      Map<Integer,Integer> count = new TreeMap();
       
-      Arrays.sort(arr);
-      for(int i : arr){
-        if(i < 0){
-          if(al.contains(i*2)){
-            al.remove(al.indexOf(i*2));
-          }
-          else{
-            al.add(i);
-          }
-        }
-        else{
-          if(i % 2 != 0){
-            al.add(i);
-            continue;
-          }
-          if(al.contains(i/2)){
-            al.remove(al.indexOf(i/2));
-          }
-          else{
-            al.add(i);
-          }
-        }
+      for(int el : arr){
+        count.put(el, count.getOrDefault(el,0)+1);
       }
       
-      return al.size() == 0;
+      for(int el : count.keySet()){
+        if(count.get(el) == 0)
+          continue;
+        
+        int target = el < 0 ? el/2 : el*2;
+        
+        //odd check
+        if(el < 0 && el % 2 != 0)
+          return false;
+        
+        if(count.get(el) > count.getOrDefault(target,0)){
+          return false;
+        }
+        count.put(target, count.getOrDefault(target,0) - count.get(el));
+      }
+      return true;
     }
   
  
