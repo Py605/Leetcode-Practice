@@ -1,58 +1,33 @@
 class Solution {
     public boolean canReorderDoubled(int[] arr) {
+      List<Integer> al = new ArrayList();
       
-      //for +ve integers.....
-      int freq[] = new int[100001];
+      Arrays.sort(arr);
       for(int i : arr){
-        if(i >= 0)
-          freq[i]++;
-      }
-      boolean flag = doCheck(freq);
-      
-      if(!flag)
-        return false;
-      
-      //for -ve integers.....
-      freq = new int[100001];
-      for(int i : arr){
-        if(i < 0)
-          freq[Math.abs(i)]++;
-      }
-      return doCheck(freq);
-    }
-  
-  public boolean doCheck(int[] freq) {
-      
-      //double of 0 will be 0....
-      boolean flag = true;
-      for(int i =0; i < 100001; i++)
-      {
-        int x = freq[i];
-        
-        if(x != 0){ 
-          if(i > 50000 || x > freq[i*2])
-          {
-            flag = false;
-            break;
+        if(i < 0){
+          if(al.contains(i*2)){
+            al.remove(al.indexOf(i*2));
           }
           else{
-            if(i == 0){
-              if(x % 2 != 0)
-              {
-                flag = false;
-                break;
-              }
-            }
-            else{
-              while(x-- > 0){
-                freq[i*2]--;
-              }
-            }
+            al.add(i);
           }
-          
+        }
+        else{
+          if(i % 2 != 0){
+            al.add(i);
+            continue;
+          }
+          if(al.contains(i/2)){
+            al.remove(al.indexOf(i/2));
+          }
+          else{
+            al.add(i);
+          }
         }
       }
-    
-      return flag;
+      
+      return al.size() == 0;
     }
+  
+ 
 }
