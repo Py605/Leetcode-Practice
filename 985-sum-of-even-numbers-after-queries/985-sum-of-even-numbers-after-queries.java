@@ -1,42 +1,20 @@
 class Solution {
-    public int[] sumEvenAfterQueries(int[] nums, int[][] queries) {
-      int n = nums.length;
-      int ans[] = new int[queries.length];
-      
-      HashSet<Integer> h = new HashSet();
-      int sum = 0;
+    public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
+        int S = 0;
+        for (int x: A)
+            if (x % 2 == 0)
+                S += x;
 
-      //storing the sum & indices of even elements....
-      for(int i = 0; i < n; i++){
-          if(nums[i] % 2 == 0){
-            sum += nums[i];
-            h.add(i);
-          }
-      }
-      
-      for(int i = 0; i < queries.length; i++){
-        int index = queries[i][1], val = queries[i][0];
-        
-        int prev = nums[index];
-        nums[index] += val;
-        
-        if(nums[index] % 2 == 0){
-          if(h.contains(index))
-            sum += nums[index] - prev;
-          else
-          {
-            sum += nums[index];
-            h.add(index);
-          }
+        int[] ans = new int[queries.length];
+
+        for (int i = 0; i < queries.length; ++i) {
+            int val = queries[i][0], index = queries[i][1];
+            if (A[index] % 2 == 0) S -= A[index];
+            A[index] += val;
+            if (A[index] % 2 == 0) S += A[index];
+            ans[i] = S;
         }
-        else{
-          if(h.contains(index)){
-            h.remove(index);
-            sum -= prev;
-          }
-        }
-        ans[i] = sum;
-      }
-      return ans;
+
+        return ans;
     }
 }
