@@ -14,36 +14,19 @@
  * }
  */
 class Solution {
-  ArrayList<Integer> al ;
+  HashSet<Integer> al ;
     public boolean findTarget(TreeNode root, int k) {
-      al = new ArrayList();
-      find(root,k);
-      return twoSum(k);
+      al = new HashSet();
+      return find(root,k);
     }
   
-  public void find(TreeNode root, int k){
+  public boolean find(TreeNode root, int k){
     if(root == null)
-      return ;
-      
-    find(root.left,k);
+      return false;
+    if(al.contains(k-root.val))
+      return true;
+    
     al.add(root.val);
-    find(root.right,k);
+    return find(root.left,k) | find(root.right,k);
   }
-  public boolean twoSum(int target) {
-        HashMap<Integer,Integer> h=new HashMap();
-
-        int a[]=new int[2];
-        int n=al.size();
-        for(int i=0;i<n;i++)
-
-        {
-
-      if(h.containsKey(target-al.get(i))){
-        return true;
-      }
-      h.put(al.get(i),i);
-        }
-
-        return false;
-    }
 }
