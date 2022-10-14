@@ -2,28 +2,27 @@ class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
       ArrayList<Integer> al = new ArrayList();
       
-      int first[] = new int [1001];
-      for(int i : nums1)
-        first[i]++;
-      
-      int sec[] = new int [1001];
-      for(int i : nums2)
-        sec[i]++;
-      
-      
-      for(int i = 0; i < 1001; i++){
-        int min = Math.min(first[i],sec[i]);
-        
-        while(min != 0){
-          al.add(i);
-          min--;
+      Arrays.sort(nums1);
+      Arrays.sort(nums2);
+
+      int i = 0, j = 0;
+      while(i < nums1.length && j < nums2.length){
+        if(nums1[i] < nums2[j]){
+          i++;
+        }
+        else if(nums1[i] > nums2[j]){
+          j++;
+        }
+        else{
+          al.add(nums1[i]);
+          i++; j++;
         }
       }
       
       int ans[] = new int[al.size()];
-      int j = 0;
-      for(int i : al){
-        ans[j++] = i;
+      int k = 0;
+      for(int l : al){
+        ans[k++] = l;
       }
       return ans;
     }
