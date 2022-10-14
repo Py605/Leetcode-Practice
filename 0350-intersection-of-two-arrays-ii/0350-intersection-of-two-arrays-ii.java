@@ -2,13 +2,21 @@ class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
       ArrayList<Integer> al = new ArrayList();
       
-      for(int i = 0; i < nums1.length; i++){
-        for(int j = 0; j < nums2.length; j++){
-          if(nums1[i] == nums2[j]){
-            al.add(nums1[i]);
-            nums2[j] = -1;
-            break;
-          }
+      int first[] = new int [1001];
+      for(int i : nums1)
+        first[i]++;
+      
+      int sec[] = new int [1001];
+      for(int i : nums2)
+        sec[i]++;
+      
+      
+      for(int i = 0; i < 1001; i++){
+        int min = Math.min(first[i],sec[i]);
+        
+        while(min != 0){
+          al.add(i);
+          min--;
         }
       }
       
