@@ -2,36 +2,30 @@ class Solution {
   List<String> res;
     public List<String> generateParenthesis(int n) {
       res = new ArrayList();
-      
-      build(new Stack(),new StringBuilder(),0,n);
+      // add equal no. of open and close brackets...
+      build(new StringBuilder(),0,0,n);
         
-        //return answer list...
+      //return answer list...
       return res;
     }
-  public void build(Stack<Character> st,StringBuilder sb, int i, int n){
+  public void build(StringBuilder sb,int open, int close, int n){
     //base case....
-    if(i==n && st.isEmpty()){
+    if(sb.length() == 2 * n){
       res.add(sb.toString());
       return;
     }
     
-    
-    System.out.println("i = "+i+", n = "+n);
     //if you can insert open bracket ['('], then do add...
-    if(i<n){
-      st.push('(');
+    if(open < n){
       sb.append('(');
-      build(st,sb,i+1,n);
-      st.pop();
+      build(sb,open+1,close,n);
       sb.deleteCharAt(sb.length()-1); 
     }
 
     //if you can insert close bracket [')'], then do add...
-    if(!st.isEmpty()){
-      st.pop();
+    if(close < open){
       sb.append(')');
-      build(st,sb,i,n);
-      st.push('(');
+      build(sb,open,close+1,n);
       sb.deleteCharAt(sb.length()-1);
     }
   }
