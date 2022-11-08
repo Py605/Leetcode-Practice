@@ -7,7 +7,7 @@ class Solution {
           st.push(c);
         }
         else{
-          if((st.peek() + 32 == c) || (st.peek() - 32 == c))
+          if(Math.abs(c - st.peek()) == 32)
             st.pop();
           else
             st.push(c);
