@@ -1,25 +1,19 @@
 class StockSpanner {
     // Create that DS
-  ArrayList<Integer> al;
+  Stack<int[]> stack;
     public StockSpanner() {
         //initialize that DS
-      al = new ArrayList();
+      stack = new Stack<>();
     }
     
-    public int next(int price) {
-      //count the previous continuous small elements and return count +  1;
-      int count = 0;
-      
-      for(int i =  al.size()-1; i >=0; i--){
-        if(al.get(i) <= price){
-          count++;
+     public int next(int price) {
+        int ans = 1;
+        while (!stack.isEmpty() && stack.peek()[0] <= price) {
+            ans += stack.pop()[1];
         }
-        else{
-          break;
-        }
-      }
-      al.add(price);
-      return count + 1;
+        
+        stack.push(new int[] {price, ans});
+        return ans;
     }
 }
 
