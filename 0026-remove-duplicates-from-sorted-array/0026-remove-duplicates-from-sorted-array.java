@@ -1,15 +1,15 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-      int i = 0, j = 0;
-      int n = nums.length;
-      while(j < n){
-        while(j < n && nums[i] == nums[j]){
-          j++;
+        int insertIndex = 1;
+        for(int i = 1; i < nums.length; i++){
+            // We skip to next index if we see a duplicate element
+            if(nums[i - 1] != nums[i]) {
+                /* Storing the unique element at insertIndex index and incrementing
+                   the insertIndex by 1 */
+                nums[insertIndex] = nums[i];     
+                insertIndex++;
+            }
         }
-        if(j == n)
-          break;
-        nums[++i] = nums[j++];
-      }
-      return i+1;
+        return insertIndex;
     }
 }
