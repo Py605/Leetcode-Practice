@@ -1,23 +1,16 @@
 class Solution {
-    public boolean uniqueOccurrences(int[] arr) {
-      int freq[] = new int[2001];
-      
-      for(int i : arr){
-        freq[i+1000]++;
-      }
-      
-      HashSet<Integer> h = new HashSet();
-      
-      for(int i : freq){
-        if(i == 0)
-          continue;
-        
-        if(h.contains(i)){
-          return false;
+     public boolean uniqueOccurrences(int[] arr) {
+        // Store the frequency of elements in the unordered map.
+        Map<Integer, Integer> freq = new HashMap<>();
+        for (int num : arr) {
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
         }
-        else
-          h.add(i);
-      }
-      return true;
+        
+        // Store the frequency count of elements in the unordered set.
+        Set<Integer> freqSet = new HashSet<>(freq.values());
+        
+        // If the set size is equal to the map size, 
+        // It implies frequency counts are unique.
+        return freq.size() == freqSet.size();
     }
 }
