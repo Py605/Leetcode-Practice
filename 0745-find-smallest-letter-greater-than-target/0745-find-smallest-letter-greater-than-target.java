@@ -1,11 +1,24 @@
 class Solution {
     public char nextGreatestLetter(char[] letters, char target) {
-      char ans = letters[0];
-      for(int i = 0;i < letters.length; i++){
-        if(letters[i] > target){
-          return letters[i];
+      int high = letters.length-1;
+
+      int low = 0;
+      while(low <= high){
+        int mid = (low + high)/2;
+
+        if(letters[mid] > target){
+          high = mid - 1;
+        }
+        else{
+          low = mid + 1;
         }
       }
-      return ans;
+      System.out.println("Low = "+ low);
+      System.out.println("High = "+ high);
+
+      if(low == letters.length){
+        return letters[0];
+      }
+      return letters[high+1];
     }
 }
