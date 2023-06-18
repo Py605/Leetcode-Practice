@@ -10,8 +10,6 @@ class Solution {
           j++;
           count++;
         }
-      System.out.println(count);
-
           chars[ind++] = chars[i];
           if(count == 1)
           {
@@ -26,13 +24,10 @@ class Solution {
           count = 0;
         
       }
+
+
       if(count == 1)
         ind++;
       return ind;
     }
 }
-/*
-["a","a","a","b","b","a","a","a","c"]
-["a","a","b","b","c","c","c"]
-["a"]
-*/
