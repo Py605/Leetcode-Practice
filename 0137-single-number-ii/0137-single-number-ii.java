@@ -1,16 +1,16 @@
 class Solution {
-  // O(n log(n))
+  // O(n) with extra space
   public int singleNumber(int[] nums) {
-    Arrays.sort(nums);
+    HashMap<Integer,Integer> hm = new HashMap();
 
-    for(int i =0;i < nums.length-1; i++){
-      if(nums[i] != nums[i+1]){
-        return nums[i];
-      }
-      else{
-        i+=2;
+    for(int i : nums){
+      hm.put(i,hm.getOrDefault(i,0)+1);
+    }
+    for(int i : hm.keySet()){
+      if(hm.get(i) == 1){
+        return i;
       }
     }
-    return nums[nums.length-1];
+    return -1;
   }
 }
