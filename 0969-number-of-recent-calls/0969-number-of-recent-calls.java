@@ -5,19 +5,13 @@ class RecentCounter {
     }
     
     public int ping(int t) {
-      int ans = 1;
-      if(pq.isEmpty()){
-        pq.add(t);
-      }
 
-      else{
+        pq.add(t);
         while(!pq.isEmpty() && (t-3000) > pq.peek()){
           pq.remove();
         }
-        pq.add(t);
-        ans = pq.size();
-      }
-      return ans;
+      
+      return pq.size();
     }
 }
 
